@@ -18,7 +18,7 @@ def jobTime(second, threadIndex, q):
  #   global jobIndex
     #jobIndex += 1
     time.sleep(second)
-    print(threadIndex, count[threadIndex])
+    #print(threadIndex, count[threadIndex])
     count[threadIndex] += second
 
     
@@ -45,6 +45,8 @@ def main():
     global data
     n, m = map(int, input().split())       # 2 5
     data = list(map(int, input().split())) # 1 2 3 4 5
+    print(n, m)
+    print(data)
     # second line - data 
     # data - contains m integers t(i) - the times in seconds it takes any thread to process i-th job
     #data = []
