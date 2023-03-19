@@ -1,67 +1,20 @@
 # python3
 
-#from queue import Queue
 import threading
 import time
-
-#count = []
-n = 0 #thread count 
-#jobIndex = 0
-activeThreads = 0
-m = 0 #job count
-data = [] #seconds per job
     
-def jobTime(threadArray, threadIndex):
-#    global jobIndex
-  #  global count
- #   q.put(0)
- #   global jobIndex
-    #jobIndex += 1
+def threadJob(sleepTime) :
+    time.sleep(sleepTime)
+
+def jobTime(threadArray):
     count = 0
     for i in range(0, len(threadArray)):
-   #     time.sleep(threadArray[i])
-    #    print(threadIndex, count)
+        threadJob(threadArray[i])
         count += threadArray[i]
-  #  count[threadIndex] += second
-
-    
-    
-    #if q.qsize() < m:
-        #count[threadIndex] += second
-    #    jobTime(data[q.qsize()], threadIndex, q)
-        #t = threading.Thread(target=jobTime, args=(data[len(jobIndex)-1], threadIndex))
-        #t.start()
-        #print(threadIndex, " ", data[i])
-
-
 
 def main():
-    # TODO: create input from keyboard
-    # input consists of two lines
-    # first line - n and m
-    # n - thread count 
-    # m - job count
-    #n = 0
-    #m = 0
-    global m
-    global n
-    global data
-    n, m = map(int, input().split())       # 2 5
-    data = list(map(int, input().split())) # 1 2 3 4 5
-
-    #n, m = map(int, "4 20".split())       # 2 5
-    #data = list(map(int, "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1".split()))
-
-    #n, m = map(int, "2 5".split())       # 2 5
-    #data = list(map(int, "1 2 3 4 5".split()))
-
-    #print(n, m)
-    #print(data)
-    # second line - data 
-    #output = []
-    global activeThreads
-    global count
-    #queue = Queue()
+    n, m = map(int, input().split())
+    data = list(map(int, input().split()))
     mas = [[] for i in range(n)]
 
     for i in range(0, n):
@@ -84,30 +37,10 @@ def main():
     ta = []
 
     for i in range(0, n):
-        #jobTime(data[i], i)
-        #activeThreads += 1
-        #count.append(0)
-        ta.append(threading.Thread(target=jobTime, args=(mas[i], i)))
+        ta.append(threading.Thread(target=jobTime, args=(mas[i])))
 
     for i in range(0, len(ta)):
         ta[i].start()
-
-        #print(i, " ", 0)
-
-        
-        
-
-    # TODO: write the function for simulating parallel tasks, 
-    # create the output pairs
-
-    
-
-    # TODO: create the function
-    #result = parallel_processing(n,m,data)
-    
-    # TODO: print out the results, each pair in it's own line
-
-
 
 if __name__ == "__main__":
     main()
