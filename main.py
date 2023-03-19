@@ -1,31 +1,46 @@
 # python3
 
-def parallel_processing(n, m, data):
-    output = []
-    # TODO: write the function for simulating parallel tasks, 
-    # create the output pairs
+import threading
+import time
+    
+def threadJob(sleepTime) :
+    time.sleep(sleepTime)
 
-    return output
+def jobTime(threadArray):
+    count = 0
+    for i in range(0, len(threadArray)):
+        threadJob(threadArray[i])
+        count += threadArray[i]
 
 def main():
-    # TODO: create input from keyboard
-    # input consists of two lines
-    # first line - n and m
-    # n - thread count 
-    # m - job count
-    n = 0
-    m = 0
+    n, m = map(int, input().split())
+    data = list(map(int, input().split()))
+    mas = [[] for i in range(n)]
 
-    # second line - data 
-    # data - contains m integers t(i) - the times in seconds it takes any thread to process i-th job
-    data = []
+    for i in range(0, n):
+        mas[i].append(data[i])
+        print(i, 0)
 
-    # TODO: create the function
-    result = parallel_processing(n,m,data)
-    
-    # TODO: print out the results, each pair in it's own line
+    for i in range(n, m):
+        smallestThread = 0
+        countInThread = 9999
+        for j in range(0, n):
+            totals = 0
+            for k in range(0, len(mas[j])):
+                totals += mas[j][k]
+            if (totals < countInThread):
+                countInThread = totals
+                smallestThread = j
+        mas[smallestThread].append(data[i])
+        print(smallestThread, countInThread)
 
+    ta = []
 
+    for i in range(0, n):
+        ta.append(threading.Thread(target=jobTime, args=(mas[i])))
+
+    for i in range(0, len(ta)):
+        ta[i].start()
 
 if __name__ == "__main__":
     main()
