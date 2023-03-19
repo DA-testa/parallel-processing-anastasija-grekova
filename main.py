@@ -55,7 +55,7 @@ def main():
     global activeThreads
     global count
     #queue = Queue()
-    mas = [[] for i in range(2)]
+    mas = [[] for i in range(n)]
 
     for i in range(0, n):
         mas[i].append(data[i])
