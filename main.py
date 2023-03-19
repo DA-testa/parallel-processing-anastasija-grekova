@@ -46,11 +46,11 @@ def main():
     global m
     global n
     global data
-    #n, m = map(int, input().split())       # 2 5
-    #data = list(map(int, input().split())) # 1 2 3 4 5
+    n, m = map(int, input().split())       # 2 5
+    data = list(map(int, input().split())) # 1 2 3 4 5
 
-    n, m = map(int, "4 20".split())       # 2 5
-    data = list(map(int, "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1".split()))
+    #n, m = map(int, "4 20".split())       # 2 5
+    #data = list(map(int, "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1".split()))
 
     #n, m = map(int, "2 5".split())       # 2 5
     #data = list(map(int, "1 2 3 4 5".split()))
