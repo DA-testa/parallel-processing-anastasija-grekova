@@ -48,6 +48,10 @@ def main():
     global data
     n, m = map(int, input().split())       # 2 5
     data = list(map(int, input().split())) # 1 2 3 4 5
+
+    #n, m = map(int, "4 20".split())       # 2 5
+    #data = list(map(int, "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1".split()))
+
     #print(n, m)
     #print(data)
     # second line - data 
@@ -72,13 +76,16 @@ def main():
                 smallestThread = j
         mas[smallestThread].append(data[i])
 
+    ta = []
+
     for i in range(0, n):
         #jobTime(data[i], i)
         #activeThreads += 1
         #count.append(0)
-        t = threading.Thread(target=jobTime, args=(mas[i], i))
-        t.start()
-       # t.join()
+        ta.append(threading.Thread(target=jobTime, args=(mas[i], i)))
+
+    for i in range(0, len(ta)):
+        ta[i].start()
 
         #print(i, " ", 0)
 
