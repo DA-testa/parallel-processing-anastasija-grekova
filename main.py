@@ -19,8 +19,8 @@ def jobTime(threadArray, threadIndex):
     #jobIndex += 1
     count = 0
     for i in range(0, len(threadArray)):
-        time.sleep(threadArray[i])
-        print(threadIndex, count)
+   #     time.sleep(threadArray[i])
+    #    print(threadIndex, count)
         count += threadArray[i]
   #  count[threadIndex] += second
 
@@ -46,11 +46,14 @@ def main():
     global m
     global n
     global data
-    n, m = map(int, input().split())       # 2 5
-    data = list(map(int, input().split())) # 1 2 3 4 5
+    #n, m = map(int, input().split())       # 2 5
+    #data = list(map(int, input().split())) # 1 2 3 4 5
 
-    #n, m = map(int, "4 20".split())       # 2 5
-    #data = list(map(int, "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1".split()))
+    n, m = map(int, "4 20".split())       # 2 5
+    data = list(map(int, "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1".split()))
+
+    #n, m = map(int, "2 5".split())       # 2 5
+    #data = list(map(int, "1 2 3 4 5".split()))
 
     #print(n, m)
     #print(data)
@@ -63,6 +66,7 @@ def main():
 
     for i in range(0, n):
         mas[i].append(data[i])
+        print(i, 0)
 
     for i in range(n, m):
         smallestThread = 0
@@ -75,6 +79,7 @@ def main():
                 countInThread = totals
                 smallestThread = j
         mas[smallestThread].append(data[i])
+        print(smallestThread, countInThread)
 
     ta = []
 
