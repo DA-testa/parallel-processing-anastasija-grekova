@@ -1,31 +1,34 @@
 # python3
 
-from queue import Queue
+#from queue import Queue
 import threading
 import time
 
-count = []
+#count = []
 n = 0 #thread count 
 #jobIndex = 0
 activeThreads = 0
 m = 0 #job count
 data = [] #seconds per job
     
-def jobTime(second, threadIndex, q):
+def jobTime(threadArray, threadIndex):
 #    global jobIndex
-    global count
-    q.put(0)
+  #  global count
+ #   q.put(0)
  #   global jobIndex
     #jobIndex += 1
-    time.sleep(second)
-    #print(threadIndex, count[threadIndex])
-    count[threadIndex] += second
+    count = 0
+    for i in range(0, len(threadArray)):
+        time.sleep(threadArray[i])
+        print(threadIndex, count)
+        count += threadArray[i]
+  #  count[threadIndex] += second
 
     
     
-    if q.qsize() < m:
+    #if q.qsize() < m:
         #count[threadIndex] += second
-        jobTime(data[q.qsize()], threadIndex, q)
+    #    jobTime(data[q.qsize()], threadIndex, q)
         #t = threading.Thread(target=jobTime, args=(data[len(jobIndex)-1], threadIndex))
         #t.start()
         #print(threadIndex, " ", data[i])
@@ -45,20 +48,35 @@ def main():
     global data
     n, m = map(int, input().split())       # 2 5
     data = list(map(int, input().split())) # 1 2 3 4 5
-    print(n, m)
-    print(data)
+    #print(n, m)
+    #print(data)
     # second line - data 
-    # data - contains m integers t(i) - the times in seconds it takes any thread to process i-th job
-    #data = []
     #output = []
     global activeThreads
     global count
-    queue = Queue()
+    #queue = Queue()
+    mas = [[] for i in range(2)]
+
+    for i in range(0, n):
+        mas[i].append(data[i])
+
+    for i in range(n, m):
+        smallestThread = 0
+        countInThread = 9999
+        for j in range(0, n):
+            totals = 0
+            for k in range(0, len(mas[j])):
+                totals += mas[j][k]
+            if (totals < countInThread):
+                countInThread = totals
+                smallestThread = j
+        mas[smallestThread].append(data[i])
+
     for i in range(0, n):
         #jobTime(data[i], i)
-        activeThreads += 1
-        count.append(0)
-        t = threading.Thread(target=jobTime, args=(data[i], i,queue))
+        #activeThreads += 1
+        #count.append(0)
+        t = threading.Thread(target=jobTime, args=(mas[i], i))
         t.start()
        # t.join()
 
